@@ -48,17 +48,13 @@ export class TimeKeeper {
     }, GLOBAL_TICK_INTERVAL);
   }
 
-  executeCallbacks() {
+  private executeCallbacks() {
     // call the callbacks if they exist and the timer is running
     this._timers.forEach((timer) => {
       if (!timer.paused && timer.callback) {
         timer.callback(this._globalSeconds - timer.started);
       }
     });
-  }
-
-  getGlobalSeconds() {
-    return this._globalSeconds;
   }
 
   createTimer(callback: TimerCallback): string {
